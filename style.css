@@ -49,7 +49,7 @@
         overflow: hidden;
       }
 
-      .lecture-slides{
+      .lecture-slides {
         display: inline-flex;
         align-items: center;
         gap: 8px;
@@ -59,6 +59,23 @@
         border-radius: 50px;
         font-size: 0.9rem;
         font-weight: 700;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .header-slides-btn {
+        position: relative;
+        z-index: 2;
+        margin-top: 15px;
+        background-color: white;
+        color: #2d8cff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-slides-btn:hover {
+        transform: translateY(-2px);
+        background-color: var(--zoom-light);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       }
 
       header::before {
