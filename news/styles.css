@@ -1,0 +1,475 @@
+/* ===== IMPORTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary: #005da4;
+  --primary-dim: #00518f;
+  --primary-container: #4fa4ff;
+  --on-primary: #edf3ff;
+  --surface: #f5f6ff;
+  --surface-container: #dfe8ff;
+  --surface-container-low: #ecf0ff;
+  --surface-container-lowest: #ffffff;
+  --on-surface: #1a2f50;
+  --on-surface-variant: #485c80;
+  --outline: #63779d;
+  --outline-variant: #9aadd6;
+  --background: #f5f6ff;
+  --secondary: #a83206;
+  --tertiary: #7c40a2;
+  --error: #b31b25;
+
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --border-black: 4px solid #000;
+  --card-border: 2px solid #000000;
+  --transition-base: 0.2s ease;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-section: 2px 2px 10px 0px rgba(0, 0, 0, 0.05);
+  --shadow-hero: 0 8px 32px rgba(0, 60, 140, 0.18);
+  --radius: 0rem;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--on-surface);
+  min-height: 100vh;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: 3rem 0;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background-color: var(--primary-container);
+  color: #002444;
+}
+
+/* ===== LAYOUT ===== */
+.page-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-container {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    padding: 0 2rem;
+  }
+}
+
+/* ===== FLOATING NAV BUTTONS ===== */
+.floating-nav {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 93, 164, 0.35);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  font-size: 1rem;
+}
+
+.nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 93, 164, 0.45);
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  padding: 2.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 4rem;
+  box-shadow: var(--shadow-hero);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-icon {
+  font-size: 1.875rem;
+}
+
+.hero-title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.hero-byline {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #2563eb;
+  padding: 0.5rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-btn {
+  background-color: #fff;
+  color: #2563eb;
+  padding: 0.5rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: background-color var(--transition-base);
+  font-family: var(--font-body);
+}
+
+.hero-btn:hover {
+  background-color: #eff6ff;
+}
+
+/* ===== WEEKS CONTAINER ===== */
+.weeks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ===== WEEK BLOCK ===== */
+.week-block {
+  display: flex;
+  border: var(--border-black);
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-section);
+}
+
+/* ===== WEEK LABEL (VERTICAL TEXT) ===== */
+.week-label-col {
+  width: 8rem;
+  background-color: var(--surface-container-lowest);
+  border-right: var(--border-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  flex-shrink: 0;
+}
+
+.week-label-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1;
+}
+
+/* ===== WEEK CONTENT ===== */
+.week-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== LECTURE CARD ===== */
+.lecture-card {
+  border: var(--card-border);
+  background-color: var(--surface-container-lowest);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  border-radius: var(--radius);
+}
+
+.lecture-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+@media (min-width: 1024px) {
+  .lecture-card {
+    flex-direction: row;
+  }
+}
+
+/* ===== LECTURE NUMBER BADGE ===== */
+.lecture-number {
+  flex-shrink: 0;
+}
+
+.lecture-num-badge {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: var(--font-headline);
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+/* ===== LECTURE INFO ===== */
+.lecture-info {
+  flex: 1;
+  text-align: left;
+}
+
+.lecture-title {
+  font-family: var(--font-headline);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.lecture-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.meta-item.chapter {
+  color: #c2410c;
+}
+
+.meta-item.date {
+  color: #1d4ed8;
+}
+
+/* ===== WATCH BUTTON ===== */
+.watch-btn-wrap {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .watch-btn-wrap {
+    width: auto;
+  }
+}
+
+.watch-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 93, 164, 0.2);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  min-width: 14rem;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 1024px) {
+  .watch-btn {
+    width: 14rem;
+  }
+}
+
+.watch-btn:hover {
+  background-color: var(--primary-dim);
+  box-shadow: 0 4px 12px rgba(0, 93, 164, 0.3);
+  transform: translateY(-1px);
+}
+
+.watch-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== HOLIDAY CARD VARIANT ===== */
+.lecture-card--holiday {
+  background-color: #fff9f0;
+  border-color: #f59e0b;
+  opacity: 0.85;
+}
+
+.lecture-num-badge--holiday {
+  background-color: #f59e0b;
+}
+
+.watch-btn--holiday {
+  background-color: #f59e0b;
+  cursor: pointer;
+}
+
+.watch-btn--holiday:hover {
+  background-color: #d97706;
+}
+
+/* ===== SPACER ===== */
+.bottom-spacer {
+  height: 0.25rem;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 640px) {
+  .hero-title-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-icon {
+    font-size: 1.5rem;
+  }
+
+  .week-label-col {
+    width: 3rem;
+  }
+
+  .week-label-text {
+    font-size: 1.25rem;
+  }
+
+  .week-content {
+    padding: 1rem;
+  }
+
+  .lecture-title {
+    font-size: 1.1rem;
+  }
+
+  .lecture-meta {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1.5rem 0;
+  }
+
+  .hero-section {
+    padding: 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .floating-nav {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
