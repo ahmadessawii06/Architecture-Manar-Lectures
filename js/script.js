@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     weekHtml += `
                     <!-- Lecture ${lecture.lecture_number} -->
-                    <div class="lecture-card rounded-xl p-6 bg-white dark:bg-slate-800 flex flex-col lg:flex-row items-center gap-6">
+                    <div class="lecture-card rounded-xl p-6 border-2 border-black bg-white dark:bg-slate-800 flex flex-col lg:flex-row items-center gap-6">
                         <div class="shrink-0">
-                            <span class="bg-primary text-white h-12 w-12 flex items-center justify-center rounded-full font-bold text-xl">${lecture.lecture_number}</span>
+                            <span class="bg-primary text-white h-12 w-12 flex items-center justify-center rounded-full font-bold text-xl"><i class="fa-solid fa-hashtag text-sm mr-1"></i>${lecture.lecture_number}</span>
                         </div>
                         <div class="flex-1 text-left">
                             <h3 class="text-xl font-bold text-on-surface dark:text-gray-100 mb-2">${lecture.title}</h3>
