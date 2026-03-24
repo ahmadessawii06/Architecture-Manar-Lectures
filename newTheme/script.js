@@ -1,4 +1,62 @@
+// ===== BINARY RAIN ANIMATION =====
+(function () {
+    const canvas = document.getElementById('binary-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
 
+    const FONT_SIZE = 10;
+    const CHARS = ['0', '1'];
+    let columns = [];
+    let drops = [];
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        columns = Math.floor(canvas.width / FONT_SIZE);
+        // Initialize drops only for new columns if resizing wider
+        while (drops.length < columns) {
+            drops.push(Math.random() * -canvas.height / FONT_SIZE);
+        }
+        drops.length = columns;
+    }
+
+    function draw() {
+        // Fade effect — lighter wash = longer tail
+        ctx.fillStyle = 'rgba(240, 244, 255, 0.10)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = `bold ${FONT_SIZE}px 'IBM Plex Mono', monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+            const x = i * FONT_SIZE;
+            const y = drops[i] * FONT_SIZE;
+
+            // Head of column — bright white flash
+            if (drops[i] > 1 && Math.random() > 0.85) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+            } else {
+                // Body — strong vivid blue
+                const alpha = 0.55 + Math.random() * 0.45;
+                ctx.fillStyle = `rgba(67, 97, 238, ${alpha})`;
+            }
+
+            ctx.fillText(char, x, y);
+
+            // Reset drop to top randomly after reaching bottom
+            if (y > canvas.height && Math.random() > 0.97) {
+                drops[i] = 0;
+            }
+            drops[i] += 0.8 + Math.random() * 0.6; // faster speed
+        }
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    setInterval(draw, 35); // ~28fps — smoother
+})();
+
+// ===== LECTURES RENDER =====
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('weeks-container');
     const totalLecturesBadge = document.getElementById('total-lectures');
