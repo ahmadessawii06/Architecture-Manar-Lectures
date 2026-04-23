@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('../data/data.json')
         .then(res => res.json())
         .then(data => {
-            // Update lecture count
-            const realLectures = data.filter(l => !isHoliday(l));
+            // Update lecture count to match all entries in the data file
             if (lectureCountEl) {
-                lectureCountEl.textContent = `${realLectures.length} Lectures`;
+                lectureCountEl.textContent = `${data.length} Lectures`;
             }
 
             let html = '';
