@@ -1,12 +1,71 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architecture Lectures</title>
-  <meta http-equiv="refresh" content="0; url=old_theme/index.html" />
+  <title>Computer Architecture Lectures</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
-  <p>Redirecting to <a href="old_theme/index.html">Architecture Lectures</a>...</p>
+  <!-- Binary Rain Background Canvas -->
+  <canvas id="binary-canvas"></canvas>
+  <div class="page-wrapper" id="header">
+    <div class="floating-nav">
+      <button class="nav-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Back to Top">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+      <button class="nav-btn" onclick="
+            document
+              .getElementById('bottom')
+              .scrollIntoView({ behavior: 'smooth' })
+          " title="Go to Bottom">
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+    </div>
+
+    <main class="main-container">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <div class="hero-title-row">
+            <i class="fa-solid fa-microchip hero-icon"></i>
+            <h1 class="hero-title">Computer Architecture Lectures</h1>
+            <i class="fa-solid fa-laptop-code hero-icon"></i>
+          </div>
+          <p class="hero-subtitle">
+            Dr. Manar Arafat &mdash; Second Semester 2026
+          </p>
+          <p class="hero-byline">By Ahmad Essawii</p>
+          <div class="hero-actions">
+            <div class="hero-badge" id="total-lectures">Loading...</div>
+            <a href="https://drive.google.com/drive/folders/1Nu-V8_5ODgDpgVkBrkpNK0esHLSWMZ2d" target="_blank" class="hero-btn">
+              <i class="fa-solid fa-file-lines"></i>
+              View All Slides
+            </a>
+            <a href="../old_theme/index.html" class="hero-btn" style="background:#fff3; color:#fff; border: 2px solid rgba(255,255,255,0.6);">
+              <i class="fa-solid fa-arrow-left"></i>
+              Old Theme
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="weeks-container" id="weeks-container"></div>
+
+      <div class="bottom-spacer" id="bottom"></div>
+    </main>
+  </div>
+
+  <script src="/script/script.js"></script>
 </body>
+
 </html>
